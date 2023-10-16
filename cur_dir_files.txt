@@ -1,0 +1,5 @@
+/home/alexander/Study/miet-os
+cur_dir_files.txt
+lab2.sh
+lab3_work_with_files.sh
+snap Study Видео Документы Загрузки Изображения Музыка Общедоступные Рабочий стол Шаблоны 
