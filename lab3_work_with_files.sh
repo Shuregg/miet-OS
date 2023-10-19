@@ -77,7 +77,7 @@ ls -l | cut --bytes=1-10 | sort| uniq | echo $[$(wc -l)-1] #Вывести ко�
 #5.1 grep
 man -k '^ls' | grep '^ls'
 
-#5.2 grep
-
+#5.2 sed
+sudo sed -i 's/^export LD_LIBRARY_PATH=.*/export LD_LIBRARY_PATH=\/opt\/rubackup\/lib/' .bashrc
 #5.3 sed
 
