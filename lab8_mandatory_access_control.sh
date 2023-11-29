@@ -1,3 +1,9 @@
+pdp-ls -M   #or -Md for dirs only
+
+#определение уровня доступа
+fly-admin-smc   #GUI
+userlev         #get and set privacy levels
+
 # Задание 1
 # 1.1. Зайдите в систему администратором. Получите права root.
 sudo su
@@ -6,19 +12,31 @@ sudo su
 # 1 — secret
 # 2 — very_secret
 # 3 — very_important
-chattr +V 
+userlev
+sudo userlev -r for_all 0
+sudo userlev -r secret 1
+sudo userlev -r very_sectet 2
+sudo userlev -r very_important 3
+userlev
 
 # 1.3. Создайте учетную запись для пользователя ivanov.
 # a)минимальный уровень конфиденциальности — for_all.
 # b)максимальный уровень конфиденциальности — very_secret
+useradd ivanov
+pdpl-user -l 0:2 ivanov
 # 1.4. Создайте учетную запись для пользователя petrov
 # a)минимальный уровень конфиденциальности — for_all
 # b)максимальный уровень конфиденциальности — secret
+useradd petrov
+pdpl-user -l 0:1
 
+#или fly-admin-smc: Пользователи->ivanov->МРД
 
 # Задание 2
+fly-fm
 # 2.1. Создайте каталог /home/project. Установите на каталог уровень конфиденциальности very_important и установите дополнительный атрибут ccnr.
-
+sudo mkdir /home/project/very_important
+sudo pdpl-file 0:0:0:1 /home/project/very_important
 # 2.2.Создайте каталог /home/project/secret. Установите на каталог уровень конфиденциальности secret.
 
 # 2.3. Создайте каталог /home/project/very_secret. Установите на каталог уровень конфиденциальности very_secret.
