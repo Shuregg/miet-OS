@@ -12,23 +12,23 @@ sudo su
 # 1 — secret
 # 2 — very_secret
 # 3 — very_important
-userlev
+sudo userlev
 sudo userlev -r for_all 0
 sudo userlev -r secret 1
 sudo userlev -r very_sectet 2
 sudo userlev -r very_important 3
-userlev
+sudo userlev
 
 # 1.3. Создайте учетную запись для пользователя ivanov.
 # a)минимальный уровень конфиденциальности — for_all.
 # b)максимальный уровень конфиденциальности — very_secret
 useradd ivanov
-pdpl-user -l 0:2 ivanov
+sudo pdpl-user -l 0:2 ivanov
 # 1.4. Создайте учетную запись для пользователя petrov
 # a)минимальный уровень конфиденциальности — for_all
 # b)максимальный уровень конфиденциальности — secret
 useradd petrov
-pdpl-user -l 0:1
+sudo pdpl-user -l 0:1
 
 #или fly-admin-smc: Пользователи->ivanov->МРД
 
@@ -42,7 +42,10 @@ sudo pdpl-file 0:0:0:1 /home/project/very_important
 # 2.3. Создайте каталог /home/project/very_secret. Установите на каталог уровень конфиденциальности very_secret.
 
 # 2.4.Установите файловые списки управления доступом (ACL) и файловые списки управления доступом по умолчанию (default ACL) на каталоги /home/project/secret и /home/project/very_secret, позволяющие пользователям ivanov и petrov создавать и удалять файлы в этих каталогах и изменять содержимое созданных файлов.
-
+sudo setfacl -m u:ivanov:rwx,d:u:ivanov:rwx /home/project/secret
+sudo setfacl -m u:petrov:rwx,d:u:petrov:rwx /home/project/secret
+sudo setfacl -m u:ivanov:rwx,d:u:ivanov:rwx /home/project/very_secret
+sudo setfacl -m u:petrov:rwx,d:u:petrov:rwx /home/project/very_secret
 
 # Задание 3
 # 3.1. Зайдите в систему под учетной записью ivanov с уровнем конфиденциальности secret.
